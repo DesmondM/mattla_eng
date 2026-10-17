@@ -54,7 +54,8 @@ export default async function handler(request, response) {
     })
 
     if (!groqResponse.ok) {
-      console.error('Groq chat request failed:', groqResponse.status)
+      const errorBody = await groqResponse.text()
+      console.error('Groq chat request failed:', groqResponse.status, errorBody)
       return sendJson(response, 502, { error: 'The assistant could not respond right now. Please try again or contact the Mattla team.' })
     }
 
