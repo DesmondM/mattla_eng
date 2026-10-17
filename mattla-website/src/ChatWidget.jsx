@@ -42,10 +42,17 @@ export default function ChatWidget() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ messages: nextMessages }),
       })
-      const data = await response.json()
+      const responseText = await response.text()
+      let data
+
+      try {
+        data = responseText ? JSON.parse(responseText) : {}
+      } catch {
+        throw new Error('The AI assistant endpoint is unavailable. Please try again later or contact the Mattla team.')
+      }
 
       if (!response.ok || !data.message) {
-        throw new Error(data.error || 'The assistant is unavailable.')
+        throw new Error(data.error || 'The AI assistant is unavailable. Please try again later or contact the Mattla team.')
       }
 
       setMessages((currentMessages) => [...currentMessages, { role: 'assistant', content: data.message }])

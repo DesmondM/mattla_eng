@@ -29,7 +29,7 @@ export default async function handler(request, response) {
     return sendJson(response, 405, { error: 'Method not allowed.' })
   }
 
-  if (!process.env.OPENAI_API_KEY) {
+  if (!process.env.GROQ_API_KEY) {
     return sendJson(response, 503, { error: 'The assistant is not configured yet. Please contact the Mattla team directly.' })
   }
 
@@ -39,35 +39,35 @@ export default async function handler(request, response) {
   }
 
   try {
-    const openAiResponse = await fetch('https://api.openai.com/v1/chat/completions', {
+    const groqResponse = await fetch('https://api.groq.com/openai/v1/chat/completions', {
       method: 'POST',
       headers: {
-        Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+        Authorization: `Bearer ${process.env.GROQ_API_KEY}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        model: process.env.OPENAI_MODEL || 'gpt-4o-mini',
+        model: process.env.GROQ_MODEL || 'llama-3.3-70b-versatile',
         messages: [{ role: 'system', content: systemPrompt }, ...messages],
         temperature: 0.2,
         max_tokens: 400,
       }),
     })
 
-    if (!openAiResponse.ok) {
-      console.error('OpenAI chat request failed:', openAiResponse.status)
+    if (!groqResponse.ok) {
+      console.error('Groq chat request failed:', groqResponse.status)
       return sendJson(response, 502, { error: 'The assistant could not respond right now. Please try again or contact the Mattla team.' })
     }
 
-    const data = await openAiResponse.json()
+    const data = await groqResponse.json()
     const message = data.choices?.[0]?.message?.content?.trim()
     if (!message) {
-      console.error('OpenAI chat response did not include a message.')
+      console.error('Groq chat response did not include a message.')
       return sendJson(response, 502, { error: 'The assistant could not respond right now. Please try again or contact the Mattla team.' })
     }
 
     return sendJson(response, 200, { message })
   } catch (error) {
-    console.error('OpenAI chat request failed:', error)
+    console.error('Groq chat request failed:', error)
     return sendJson(response, 502, { error: 'The assistant could not respond right now. Please try again or contact the Mattla team.' })
   }
 }
