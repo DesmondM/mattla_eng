@@ -11,7 +11,7 @@ Copy `.env.example` to `.env` and set `GROQ_API_KEY`. To exercise the chat endpo
 
 ## Vercel deployment
 
-Import this repository into Vercel as a Vite project and set **Root Directory** to `Mattla/mattla-website`. This is required because the website is in that repository subdirectory. Vercel then deploys the frontend from `dist` and the `/api/chat` serverless function together.
+Import this repository into Vercel as a Vite project and set **Root Directory** to `mattla-website`. This is required because the website is in that repository subdirectory. Vercel then deploys the frontend from `dist` and the `/api/chat` serverless function together.
 
 In **Project Settings → Environment Variables**, add:
 
