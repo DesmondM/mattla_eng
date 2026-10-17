@@ -1,0 +1,33 @@
+.services-nav .active { border-color: var(--green); }
+.services-hero { min-height: 465px; display: grid; align-items: center; color: #fff; background: linear-gradient(90deg, rgba(6, 38, 56, .55), rgba(6, 38, 56, .12)), url('/images/services-hero-banner.jpg') center / cover; }
+.services-hero .shell { padding: 80px 0 58px; }
+.services-hero h1 { max-width: 530px; margin: 0 0 24px; font-size: clamp(46px, 5.4vw, 74px); line-height: .9; letter-spacing: -3.8px; }
+.services-hero h1 span { color: var(--green); }
+.services-hero .shell > p:last-child { max-width: 410px; margin: 0; font-size: 12px; line-height: 1.5; }
+.service-unit { padding: 82px 0; }
+.service-unit.muted { background: #edf1f7; }
+.service-unit-grid { display: grid; grid-template-columns: 150px 1fr; gap: 54px; }
+.service-number { padding-top: 4px; color: var(--blue); font-size: 74px; font-weight: 300; letter-spacing: -5px; line-height: .9; }
+.service-unit-content { max-width: 790px; }
+.service-unit h2 { color: var(--navy); margin: 0 0 14px; font-size: clamp(35px, 4vw, 53px); letter-spacing: -2.7px; }
+.service-intro { max-width: 710px; margin: 0 0 18px; font-size: 12px; line-height: 1.55; }
+.service-card-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 26px; }
+.service-card { min-height: 94px; padding: 15px 17px; border: 1px solid #d7e0ec; border-radius: 11px; background: #f0f4fa; }
+.muted .service-card { background: #fff; border-color: #b8dbf4; box-shadow: 0 4px 8px rgba(6, 38, 56, .05); }
+.service-card h3 { margin: 0 0 4px; color: var(--blue); font-size: 13px; line-height: 1.05; }
+.service-card ul { margin: 0; padding-left: 15px; font-size: 9px; line-height: 1.43; }
+.service-card li { margin: 0; }
+.service-unit .button { font-size: 9px; }
+.services-page footer { border-top: 0; }
+@media (max-width: 760px) {
+  .services-nav { display: flex; position: static; padding: 0; box-shadow: none; background: none; gap: 12px; font-size: 8px; }
+  .services-nav a:not(.active):not(.nav-cta) { display: none; }
+  .services-nav .nav-cta { padding: 8px 10px; }
+  .services-hero { min-height: 440px; background-position: 61% center; }
+  .services-hero .shell { padding: 70px 0; }
+  .service-unit { padding: 58px 0; }
+  .service-unit-grid { grid-template-columns: 1fr; gap: 22px; }
+  .service-number { font-size: 60px; }
+  .service-unit h2 { letter-spacing: -1.8px; }
+  .service-card-grid { grid-template-columns: 1fr; }
+}
