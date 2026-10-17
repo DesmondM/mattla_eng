@@ -46,7 +46,7 @@ export default async function handler(request, response) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        model: process.env.GROQ_MODEL || 'llama-3.3-70b-versatile',
+        model: process.env.GROQ_MODEL || 'llama-3.1-8b-instant',
         messages: [{ role: 'system', content: systemPrompt }, ...messages],
         temperature: 0.2,
         max_tokens: 400,
@@ -56,7 +56,7 @@ export default async function handler(request, response) {
     if (!groqResponse.ok) {
       const errorBody = await groqResponse.text()
       console.error('Groq chat request failed:', groqResponse.status, errorBody)
-      return sendJson(response, 502, { error: 'The assistant could not respond right now. Please try again or contact the Mattla team.' })
+      return sendJson(response, 502, { error: `The assistant could not respond right now (Groq status ${groqResponse.status}). Please try again or contact the Mattla team.` })
     }
 
     const data = await groqResponse.json()

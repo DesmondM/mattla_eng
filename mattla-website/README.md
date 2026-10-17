@@ -18,6 +18,6 @@ In **Project Settings → Environment Variables**, add:
 | Name | Required | Value |
 | --- | --- | --- |
 | `GROQ_API_KEY` | Yes | A Groq API key |
-| `GROQ_MODEL` | No | Defaults to `llama-3.3-70b-versatile` |
+| `GROQ_MODEL` | No | Defaults to `llama-3.1-8b-instant` |
 
 Deploy after saving the variables. The assistant has access only to the approved Mattla website knowledge defined in `api/chat.js`; update that source when the public service information changes. Ollama is not used in production because Vercel serverless functions cannot host a persistent local model.
