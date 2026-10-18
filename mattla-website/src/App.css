@@ -48,6 +48,8 @@ footer { background: var(--paper); padding: 55px 0 42px; }.footer-grid { display
 .project-detail ul { margin: 0; padding: 0; list-style: none; }
 .project-detail li { font-size: 9px; line-height: 1.6; }
 .map-attribution { color: #40606d; font-size: 8px; line-height: 1; }
+.partner-image { align-self: start; }
+.partner-image img { height: auto; object-fit: contain; border-radius: 0; }
 @media (max-width: 760px) {
   body { overflow-x: hidden; }
   .menu-toggle { width: 30px; justify-items: end; }

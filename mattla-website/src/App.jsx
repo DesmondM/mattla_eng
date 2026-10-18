@@ -252,8 +252,7 @@ function App() {
       <section className="partner-section">
         <div className="shell partner-grid">
           <div className="partner-image">
-            <img src="/images/solar-engineer.jpeg" alt="Engineer inspecting solar panels" />
-            <div className="stamp">SOUTH AFRICAN<br /><strong>1ST</strong><br />BLACK OWNED</div>
+            <img src="/images/local-expertise.png" alt="Solar engineer with South Africa's first EMT model validation approval" />
           </div>
           <div className="partner-copy">
             <p className="eyebrow blue">WHY PARTNER WITH MATTLA</p>
