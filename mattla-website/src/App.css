@@ -50,6 +50,21 @@ footer { background: var(--paper); padding: 55px 0 42px; }.footer-grid { display
 .map-attribution { color: #40606d; font-size: 8px; line-height: 1; }
 .partner-image { align-self: start; }
 .partner-image img { height: auto; object-fit: contain; border-radius: 0; }
+.intro { padding: 94px 0 82px; }
+.intro-grid { grid-template-columns: minmax(0, 1.35fr) minmax(280px, .65fr); gap: 70px; align-items: start; }
+.intro h2 { max-width: 700px; font-size: clamp(48px, 6vw, 82px); line-height: .92; letter-spacing: -4px; }
+.intro-side { grid-template-columns: 1fr; gap: 12px; font-size: 11px; line-height: 1.55; }
+.intro-side img { justify-self: end; width: min(100%, 220px); height: 190px; grid-row: auto; border-radius: 20px; }
+.intro-side p { max-width: 370px; }
+.intro-side p:first-of-type { margin-top: 54px; }
+@media (max-width: 760px) {
+  .intro { padding: 65px 0; }
+  .intro-grid { grid-template-columns: 1fr; gap: 40px; }
+  .intro h2 { font-size: clamp(34px, 10vw, 42px); letter-spacing: -2.5px; }
+  .intro-side { grid-template-columns: 105px 1fr; gap: 15px 28px; font-size: 10px; }
+  .intro-side img { justify-self: stretch; width: 105px; height: 110px; grid-row: span 2; border-radius: 10px; }
+  .intro-side p:first-of-type { margin-top: 0; }
+}
 @media (max-width: 760px) {
   body { overflow-x: hidden; }
   .menu-toggle { width: 30px; justify-items: end; }

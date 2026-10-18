@@ -204,7 +204,7 @@ function App() {
         <div className="shell intro-grid">
           <div>
             <p className="eyebrow blue">OUR EXPERTISE & IMPACT</p>
-            <h2>Engineering expertise for complex <span>energy systems.</span></h2>
+            <h2>Engineering<br />Expertise For<br />Complex <span>Energy<br />Systems.</span></h2>
           </div>
           <div className="intro-side">
             <img src="/images/engineering-expertise.png" alt="Solar panels and power transmission infrastructure" />
