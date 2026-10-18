@@ -14,6 +14,10 @@ Be concise, professional and helpful. Use plain language for non-technical visit
 const preferredModels = [
   'llama-3.3-70b-versatile',
   'llama-3.1-8b-instant',
+  'openai/gpt-oss-120b',
+  'openai/gpt-oss-20b',
+  'qwen/qwen3-32b',
+  'moonshotai/kimi-k2-instruct',
   'meta-llama/llama-4-scout-17b-16e-instruct',
   'meta-llama/llama-4-maverick-17b-128e-instruct',
 ]
@@ -33,7 +37,6 @@ function isValidMessage(message) {
 }
 
 async function getModel(apiKey) {
-  if (process.env.GROQ_MODEL) return process.env.GROQ_MODEL
   if (discoveredModel) return discoveredModel
 
   const modelsResponse = await fetch('https://api.groq.com/openai/v1/models', {
@@ -49,7 +52,17 @@ async function getModel(apiKey) {
   const models = (await modelsResponse.json()).data
     ?.map((model) => model.id)
     .filter((model) => !/(audio|guard|speech|tts|whisper)/i.test(model)) || []
-  discoveredModel = preferredModels.find((model) => models.includes(model)) || models[0]
+  const configuredModel = process.env.GROQ_MODEL
+  if (configuredModel && models.includes(configuredModel)) {
+    discoveredModel = configuredModel
+    return discoveredModel
+  }
+
+  if (configuredModel) {
+    console.warn(`Configured GROQ_MODEL "${configuredModel}" is unavailable; selecting an active compatible model instead.`)
+  }
+
+  discoveredModel = preferredModels.find((model) => models.includes(model))
   return discoveredModel
 }
 
