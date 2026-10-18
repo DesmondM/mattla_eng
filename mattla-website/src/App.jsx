@@ -294,9 +294,15 @@ function App() {
           <div className="map-area">
             <img className="province-map" src={`/images/project-reach/${activeRegion.map}.png`} alt={`Map of South Africa highlighting ${activeRegion.name}`} />
             <a className="map-attribution" href="https://www.geoboundaries.org/" target="_blank" rel="noreferrer">Province boundaries: geoBoundaries</a>
-            <div className="project-detail">
-              <h3>{activeRegion.name}</h3>
-              <ul>{activeRegion.projectList.map((project) => <li key={project}>{project}</li>)}</ul>
+            <div className="project-summary">
+              <div className="project-detail">
+                <h3>{activeRegion.name}</h3>
+                <ul>{activeRegion.projectList.map((project) => <li key={project}>{project}</li>)}</ul>
+              </div>
+              <div className="project-images" aria-hidden="true">
+                <img src="/images/project-reach/solar-installation.jpg" alt="" />
+                <img src="/images/project-reach/transmission-lines.jpg" alt="" />
+              </div>
             </div>
           </div>
         </div>

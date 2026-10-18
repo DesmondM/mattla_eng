@@ -65,6 +65,17 @@ footer { background: var(--paper); padding: 55px 0 42px; }.footer-grid { display
   .intro-side img { justify-self: stretch; width: 105px; height: 110px; grid-row: span 2; border-radius: 10px; }
   .intro-side p:first-of-type { margin-top: 0; }
 }
+  .project-summary { display: grid; grid-template-columns: minmax(0, 1fr) 150px; gap: 18px; align-items: center; }
+  .project-images { position: relative; height: 172px; }
+  .project-images img { position: absolute; width: 112px; aspect-ratio: 1; border-radius: 50%; object-fit: cover; box-shadow: 0 5px 12px rgba(6, 38, 56, .12); }
+  .project-images img:first-child { top: 0; right: 0; }
+  .project-images img:last-child { bottom: 0; left: 0; width: 98px; }
+  @media (max-width: 760px) {
+    .project-summary { grid-template-columns: minmax(0, 1fr) 120px; gap: 12px; }
+    .project-images { height: 140px; }
+    .project-images img { width: 94px; }
+    .project-images img:last-child { width: 82px; }
+  }
 @media (max-width: 760px) {
   body { overflow-x: hidden; }
   .menu-toggle { width: 30px; justify-items: end; }
