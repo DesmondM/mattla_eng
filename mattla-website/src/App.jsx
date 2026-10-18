@@ -207,7 +207,7 @@ function App() {
             <h2>Engineering expertise for complex <span>energy systems.</span></h2>
           </div>
           <div className="intro-side">
-            <img src="/images/energy-circles.jpeg" alt="Renewable energy engineer and power network" />
+            <img src="/images/engineering-expertise.png" alt="Solar panels and power transmission infrastructure" />
             <p>MATTLA is a 100% wholly black owned South African engineering company established in 2015, providing multidisciplinary solutions across the energy value chain.</p>
             <p>Specialist expertise, international experience and local knowledge enable MATTLA to support projects as consulting engineers, renewable project managers, owner&apos;s engineers, grid connection advisors and design engineers throughout sub-Saharan Africa.</p>
           </div>
