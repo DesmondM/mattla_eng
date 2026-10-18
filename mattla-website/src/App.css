@@ -70,7 +70,7 @@ footer { background: var(--paper); padding: 55px 0 42px; }.footer-grid { display
   .project-images img { position: absolute; width: 112px; aspect-ratio: 1; border-radius: 50%; object-fit: cover; box-shadow: 0 5px 12px rgba(6, 38, 56, .12); }
   .project-images img:first-child { top: 0; right: 0; }
   .project-images img:last-child { bottom: 0; left: 0; width: 98px; }
-  .contact select option { color: var(--navy); background: #fff; }
+  .contact select option { color: var(--navy); background: #e6fcf1; }
   @media (max-width: 760px) {
     .project-summary { grid-template-columns: minmax(0, 1fr) 120px; gap: 12px; }
     .project-images { height: 140px; }
