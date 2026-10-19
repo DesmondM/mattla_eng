@@ -75,6 +75,14 @@ function Arrow() {
   return <span aria-hidden="true" className="arrow">↗</span>
 }
 
+function ArrowIcon() {
+  return (
+    <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M2 10L10 2M10 2H3M10 2V9" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  )
+}
+
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [submitted, setSubmitted] = useState(false)
@@ -176,38 +184,45 @@ function App() {
   return (
     <main>
       <header className="header">
-        <a className="brand" href="#home" aria-label="Mattla home">
-          <img src="/logos/MATTLA_Logo_RGB.svg" alt="Mattla Engineering Solutions" />
-        </a>
-        <button className="menu-toggle" aria-expanded={menuOpen} aria-label="Toggle navigation" onClick={() => setMenuOpen(!menuOpen)}>
-          <span />
-          <span />
-        </button>
-        <nav className={menuOpen ? 'nav nav-open' : 'nav'}>
-          {['Home', 'About Us', 'Services', 'Projects', 'Contact'].map((item) => (
-            <a key={item} href={item === 'Services' ? '/services' : `#${item.toLowerCase().replace(' ', '-')}`} onClick={item === 'Services' ? openServices : closeMenu}>{item}</a>
-          ))}
-          <a className="nav-cta" href="#contact" onClick={closeMenu}>Start a project <Arrow /></a>
-        </nav>
+        <div className="shell header-inner">
+          <a className="brand" href="#home" aria-label="Mattla home">
+            <img src="/logos/MATTLA_Logo_RGB.svg" alt="Mattla Engineering Solutions" />
+          </a>
+          <div className="header-nav-group">
+            <nav className={menuOpen ? 'nav nav-open' : 'nav'} aria-label="Primary navigation">
+              {['Home', 'About Us', 'Services', 'Projects', 'Contact'].map((item) => (
+                <a className={item === 'Home' ? 'active' : ''} key={item} href={item === 'Services' ? '/services' : `#${item.toLowerCase().replace(' ', '-')}`} onClick={item === 'Services' ? openServices : closeMenu}>{item}</a>
+              ))}
+            </nav>
+            <a className="nav-cta" href="#contact" onClick={closeMenu}>Start a project <ArrowIcon /></a>
+            <button className="menu-toggle" aria-expanded={menuOpen} aria-label="Toggle navigation" onClick={() => setMenuOpen(!menuOpen)}>
+              <span />
+              <span />
+              <span />
+            </button>
+          </div>
+        </div>
       </header>
 
       <section className="hero" id="home">
         <div className="shell hero-content">
           <p className="eyebrow light">MATTLA ENGINEERING SOLUTIONS</p>
-          <h1>Engineering<br />that keeps the<br /><em>grid running.</em></h1>
-          <p className="hero-copy">Specialist engineering for renewable integration, grid compliance and resilient power infrastructure - grounded in South Africa, informed by international experience.</p>
-          <a className="button" href="#services">Explore our expertise <Arrow /></a>
+          <h1>Engineering<br />That Keeps the<br /><em>Grid Running.</em></h1>
+          <p className="hero-copy">Specialist engineering for renewable integration, grid compliance and resilient power infrastructure—grounded in South Africa, informed by international experience.</p>
+          <a className="button" href="#services">Explore our expertise <ArrowIcon /></a>
         </div>
       </section>
 
       <section className="intro dotted" id="about-us">
-        <div className="shell intro-grid">
-          <div>
-            <p className="eyebrow blue">OUR EXPERTISE & IMPACT</p>
+        <div className="shell">
+          <p className="eyebrow blue">OUR EXPERTISE & IMPACT</p>
+          <div className="intro-grid">
             <h2>Engineering<br />Expertise For<br />Complex <span>Energy<br />Systems.</span></h2>
+            <div className="intro-image">
+              <img src="/images/grid.png" alt="Solar panels and high-voltage power transmission towers at sunset" />
+            </div>
           </div>
           <div className="intro-side">
-            <img src="/images/engineering-expertise.png" alt="Solar panels and power transmission infrastructure" />
             <p>MATTLA is a 100% wholly black owned South African engineering company established in 2015, providing multidisciplinary solutions across the energy value chain.</p>
             <p>Specialist expertise, international experience and local knowledge enable MATTLA to support projects as consulting engineers, renewable project managers, owner&apos;s engineers, grid connection advisors and design engineers throughout sub-Saharan Africa.</p>
           </div>
@@ -217,11 +232,7 @@ function App() {
       <section className="services" id="services">
         <div className="shell">
           <div className="service-heading">
-            <div>
-              <p className="eyebrow dark">BUSINESS UNITS</p>
-              <p className="section-kicker">service architecture</p>
-              <h2>Five specialist business units across the Energy value chain</h2>
-            </div>
+            <div><p className="service-eyebrow">SERVICE ARCHITECTURE</p><h2>Five specialist<br />business units<br />across the <span>Energy<br />Value Chain</span></h2></div>
             <p>The company is divided into five business units, each offering unique specialist services and capable of providing fully integrated services to meet the needs of any project.</p>
           </div>
           <div className="service-list">
@@ -232,13 +243,13 @@ function App() {
               return (
                 <article className={`service-row ${isExpanded ? 'is-expanded' : ''}`} key={service.number}>
                   <button className="service-trigger" type="button" aria-expanded={isExpanded} aria-controls={detailsId} onClick={() => toggleService(service.number)}>
-                    <div className="service-name"><span>{service.number}</span><h3>{service.name}</h3></div>
+                    <h3>{service.name}</h3>
+                    <span className="service-number" aria-hidden="true">{service.number}</span>
                     <p>{service.description}</p>
-                    <span className="service-toggle" aria-hidden="true" />
+                    <span className="service-toggle" aria-hidden="true">{isExpanded ? '×' : <ArrowIcon />}</span>
                   </button>
                   <div className="service-details" id={detailsId}>
                     <div className="service-details-content">
-                      <p>Specialist services</p>
                       <ul>{service.details.map((detail) => <li key={detail}>{detail}</li>)}</ul>
                     </div>
                   </div>
@@ -293,7 +304,6 @@ function App() {
           </div>
           <div className="map-area">
             <img className="province-map" src={`/images/project-reach/${activeRegion.map}.png`} alt={`Map of South Africa highlighting ${activeRegion.name}`} />
-            <a className="map-attribution" href="https://www.geoboundaries.org/" target="_blank" rel="noreferrer">Province boundaries: geoBoundaries</a>
             <div className="project-summary">
               <div className="project-detail">
                 <h3>{activeRegion.name}</h3>
