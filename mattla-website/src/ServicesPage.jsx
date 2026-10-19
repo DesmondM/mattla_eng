@@ -63,6 +63,14 @@ function Arrow() {
   return <span aria-hidden="true" className="arrow">↗</span>
 }
 
+function NavArrow() {
+  return (
+    <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M2 10L10 2M10 2H3M10 2V9" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  )
+}
+
 function ContactSection() {
   const [submitted, setSubmitted] = useState(false)
 
@@ -99,14 +107,29 @@ function ContactSection() {
 }
 
 export default function ServicesPage() {
+  const [menuOpen, setMenuOpen] = useState(false)
+
+  function closeMenu() {
+    setMenuOpen(false)
+  }
+
   return (
     <main className="services-page">
       <header className="header">
-        <a className="brand" href="/" aria-label="Mattla home"><img src="/logos/MATTLA_Logo_RGB.svg" alt="Mattla Engineering Solutions" /></a>
-        <nav className="nav services-nav">
-          <a href="/">Home</a><a href="/#about-us">About Us</a><a className="active" href="/services">Services</a><a href="/#projects">Projects</a><a href="#contact">Contact</a>
-          <a className="nav-cta" href="#contact">Start a project <Arrow /></a>
-        </nav>
+        <div className="shell header-inner">
+          <a className="brand" href="/" aria-label="Mattla home"><img src="/logos/MATTLA_Logo_RGB.svg" alt="Mattla Engineering Solutions" /></a>
+          <div className="header-nav-group">
+            <nav className={menuOpen ? 'nav nav-open' : 'nav'} aria-label="Primary navigation">
+              <a href="/" onClick={closeMenu}>Home</a><a href="/#about-us" onClick={closeMenu}>About Us</a><a className="active" href="/services" onClick={closeMenu}>Services</a><a href="/#projects" onClick={closeMenu}>Projects</a><a href="#contact" onClick={closeMenu}>Contact</a>
+            </nav>
+            <a className="nav-cta" href="#contact" onClick={closeMenu}>Start a project <NavArrow /></a>
+            <button className="menu-toggle" type="button" aria-expanded={menuOpen} aria-label="Toggle navigation" onClick={() => setMenuOpen(!menuOpen)}>
+              <span />
+              <span />
+              <span />
+            </button>
+          </div>
+        </div>
       </header>
 
       <section className="services-hero">
