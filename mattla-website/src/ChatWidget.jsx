@@ -108,10 +108,10 @@ export default function ChatWidget() {
         </div>
       )}
 
-      <button className="chat-launcher" type="button" aria-expanded={isOpen} aria-controls="mattla-chat" onClick={() => setIsOpen((open) => !open)}>
+     {/* <button className="chat-launcher" type="button" aria-expanded={isOpen} aria-controls="mattla-chat" onClick={() => setIsOpen((open) => !open)}>
         <span aria-hidden="true">{isOpen ? '×' : '✦'}</span>
         <span>{isOpen ? 'Close' : 'Ask Mattla AI'}</span>
-      </button>
+      </button>*/}
     </section>
   )
 }

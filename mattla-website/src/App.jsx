@@ -178,7 +178,7 @@ function App() {
   }
 
   if (page === 'services') {
-    return <><ServicesPage /><ChatWidget /></>
+    return <><ServicesPage />{/* <ChatWidget /> */}</>
   }
 
   return (
